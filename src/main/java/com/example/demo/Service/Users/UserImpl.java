@@ -55,5 +55,21 @@ public class UserImpl implements UserService{
 
         return user;
     }
+
+    @Override
+    public User changePassword(String username, String oldPassword, String newPassword) {
+        User user = getByUsername(username);
+        String oldPasswordHash = MD5Hash.md5(oldPassword);
+
+        String newPasswordHash = MD5Hash.md5(newPassword);
+        if(!oldPasswordHash.equalsIgnoreCase(user.getPasswordHash())){
+            return null;
+        }
+
+        user.setPasswordHash(newPasswordHash);
+        userRepository.save(user);
+
+        return user;
+    }
 }
 

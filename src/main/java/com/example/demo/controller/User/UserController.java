@@ -1,6 +1,7 @@
 package com.example.demo.controller.User;
 
 import com.example.demo.Service.Users.UserService;
+import com.example.demo.entity.DefaultResponse;
 import com.example.demo.entity.ResetPasswordResponse;
 import com.example.demo.entity.LoginResponse;
 import com.example.demo.entity.User;
@@ -48,5 +49,17 @@ public class UserController {
         }
 
         return ResponseEntity.ok(new ResetPasswordResponse("00", "Reset password success", user));
+    }
+
+    @GetMapping("/changePassword")
+    public ResponseEntity<DefaultResponse> changePassword(@RequestParam String username, @RequestParam String password, @RequestParam String newPassword) {
+        User user = userService.changePassword(username, password, newPassword);
+        if (user == null) {
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(new DefaultResponse("01", "Invalid user"));
+        }
+
+        return ResponseEntity.ok(new DefaultResponse("00", "Change password success"));
     }
 }

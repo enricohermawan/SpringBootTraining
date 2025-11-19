@@ -8,4 +8,5 @@ public interface UserService {
 
     User login(String username, String password);
     User resetPassword(String username, String email);
+    User changePassword(String username, String oldPassword, String newPassword);
 }
