@@ -38,7 +38,10 @@ public class ProductImpl implements ProductService{
                 sortBy
         );
 
-        Pageable pageable = PageRequest.of(page, size, sort);
+        int pageIndex = (page != null && page > 0) ? page - 1 : 0;
+        int pageSize = (size != null && size > 0) ? size : 10; // default size
+
+        Pageable pageable = PageRequest.of(pageIndex, pageSize, sort);
 
         return productRepository.findAll(
                 ProductSpecification.filter(name, category, minPrice, maxPrice),

@@ -1,9 +1,9 @@
 package com.example.demo.controller.User;
 
 import com.example.demo.Service.Users.UserService;
-import com.example.demo.entity.DefaultResponse;
-import com.example.demo.entity.ResetPasswordResponse;
-import com.example.demo.entity.LoginResponse;
+import com.example.demo.dto.DefaultResponse;
+import com.example.demo.dto.ResetPasswordResponse;
+import com.example.demo.dto.LoginResponse;
 import com.example.demo.entity.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

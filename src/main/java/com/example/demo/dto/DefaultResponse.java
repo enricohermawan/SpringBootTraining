@@ -1,9 +1,6 @@
-package com.example.demo.entity;
+package com.example.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class DefaultResponse {
     @JsonProperty("response_code")

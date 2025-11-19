@@ -1,8 +1,7 @@
 package com.example.demo.controller.Product;
 
 import com.example.demo.Service.Product.ProductService;
-import com.example.demo.entity.DefaultResponse;
-import com.example.demo.entity.ListProductResponse;
+import com.example.demo.dto.ListProductResponse;
 import com.example.demo.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @RestController
 public class ProductController {
@@ -30,7 +28,7 @@ public class ProductController {
             @RequestParam(required = false) BigDecimal maxPrice,
             @RequestParam(required = false, defaultValue = "name") String sortBy,
             @RequestParam(required = false, defaultValue = "asc") String sortOrder,
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
 
@@ -41,7 +39,7 @@ public class ProductController {
         if (products.isEmpty()) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
-                    .body(new ListProductResponse("404", "Not found", null));
+                    .body(new ListProductResponse("99", "Not found", products));
         }
 
         return ResponseEntity.ok(new ListProductResponse("00", "Success", products));

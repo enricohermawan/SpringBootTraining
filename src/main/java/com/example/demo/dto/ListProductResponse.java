@@ -1,5 +1,6 @@
-package com.example.demo.entity;
+package com.example.demo.dto;
 
+import com.example.demo.entity.Product;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.domain.Page;
 
@@ -27,43 +28,15 @@ public class ListProductResponse {
 
     // Inner class for metadata
     public static class Metadata {
-        @JsonProperty("page_number")
-        private int pageNumber;
-
-        @JsonProperty("page_size")
-        private int pageSize;
-
-        @JsonProperty("total_elements")
+        @JsonProperty("total_rows")
         private long totalElements;
 
         @JsonProperty("total_pages")
         private int totalPages;
 
         public Metadata(Page<?> page) {
-            if (page.getNumber() < 1) {
-                this.pageNumber = 1;
-            } else {
-                this.pageNumber = page.getNumber();
-            }
-            this.pageSize = page.getSize();
             this.totalElements = page.getTotalElements();
             this.totalPages = page.getTotalPages();
-        }
-
-        public int getPageNumber() {
-            return pageNumber;
-        }
-
-        public void setPageNumber(int pageNumber) {
-            this.pageNumber = pageNumber;
-        }
-
-        public int getPageSize() {
-            return pageSize;
-        }
-
-        public void setPageSize(int pageSize) {
-            this.pageSize = pageSize;
         }
 
         public long getTotalElements() {
