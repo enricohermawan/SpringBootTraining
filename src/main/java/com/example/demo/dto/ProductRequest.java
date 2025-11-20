@@ -1,29 +1,13 @@
-package com.example.demo.entity;
-
-import jakarta.persistence.*;
+package com.example.demo.dto;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
-@Entity
-@Table(name = "product")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class ProductRequest {
     private String name;
     private String code;
     private String category;
     private Integer amount;
     private BigDecimal price;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -64,5 +48,4 @@ public class Product {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
 }

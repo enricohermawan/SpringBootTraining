@@ -48,4 +48,42 @@ public class ProductImpl implements ProductService{
                 pageable
         );
     }
+
+    @Override
+    public UUID addProduct(Product product) {
+        product = productRepository.save(product);
+        System.out.println(product.getId());
+
+        return product.getId();
+    }
+
+    @Override
+    public Product editProduct(Product product) {
+        Product oldProduct = productRepository.findById(product.getId())
+                .orElse(null);
+
+        if (oldProduct == null){
+            return null;
+        }
+
+        if (product.getName() != null) {
+            oldProduct.setName(product.getName());
+        }
+        if (product.getCategory() != null) {
+            oldProduct.setCategory(product.getCategory());
+        }
+        if (product.getPrice() != null) {
+            oldProduct.setPrice(product.getPrice());
+        }
+        if (product.getCode() != null) {
+            oldProduct.setCode(product.getCode());
+        }
+        if (product.getAmount() != null) {
+            oldProduct.setAmount(product.getAmount());
+        }
+
+        return productRepository.save(oldProduct);
+    }
+
+
 }
